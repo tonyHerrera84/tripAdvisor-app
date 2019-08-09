@@ -9,9 +9,11 @@ import {
 
 // screens
 import HomeScreen from '../screens/Home';
-import MyAccountScreen from '../screens/MyAccount';
 import SearchScreen from '../screens/Search';
 import TopFiveScreen from '../screens/TopFive';
+
+import MyAccountScreen from '../screens/MyAccount/MyAccount';
+import RegisterScreen from '../screens/MyAccount/Register';
 
 const HomeScreenStack = createStackNavigator({
     Home: {
@@ -27,6 +29,12 @@ const MyAccountScreenStack = createStackNavigator({
         screen: MyAccountScreen,
         navigationOptions: ({navigation}) => ({
             title: 'Mi cuenta'
+        })
+    },
+    Register: {
+        screen: RegisterScreen,
+        navigationOptions: ({navigation}) => ({
+            title: 'Register'
         })
     }
 })
@@ -105,6 +113,7 @@ const RootStack = createBottomTabNavigator(
             })
         }
     }, {
+        initialRouteName: 'MyAccount',
         tabBarOptions: {
             inactiveTintColor: '#646464',
             activeTintColor: '#00a680',
