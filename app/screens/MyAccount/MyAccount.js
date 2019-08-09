@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 
 export default class MyAccount extends Component {
     goToScreen = nameScreen => {
-        console.log(nameScreen);
+        this.props.navigation.navigate(nameScreen);
     }
 
     render() {
