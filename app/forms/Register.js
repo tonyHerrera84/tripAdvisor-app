@@ -3,6 +3,8 @@ import React from 'react';
 import t from 'tcomb-form-native';
 import formValidation from '../configs/Validations';
 
+import inputTemplate from './templates/input'
+
 export const RegisterStruct = t.struct({
     name: t.String,
     email: formValidation.email,
@@ -13,28 +15,40 @@ export const RegisterStruct = t.struct({
 export const RegisterOptions = {
     fields: {
         name: {
-            label: 'Nombre:',
-            placeholder: 'Escríbe tu nombre y apellidos',
-            error: 'Nombre inválido'
+            template: inputTemplate,
+            config: {
+                placeholder: 'Escríbe tu nombre y apellidos',
+                iconType: 'material-community',
+                iconName: 'account-outline'
+            }
         },
         email: {
-            label: 'Email:',
-            placeholder: 'Escríbe tu correo electrónico',
-            error: 'Email inválido'
+            template: inputTemplate,
+            config: {
+                placeholder: 'Escríbe tu correo electrónico',
+                iconType: 'material-community',
+                iconName: 'at'
+            }
         },
         password: {
-            label: 'Contraseña:',
-            placeholder: 'Escríbe tu contraseña',
-            error: 'Contraseña inválida',
-            password: true,
-            secureTextEntry: true
+            template: inputTemplate,
+            config: {
+                placeholder: 'Escríbe tu contraseña',
+                iconType: 'material-community',
+                iconName: 'lock-outline',
+                password: true,
+                secureTextEntry: true
+            }
         },
         passwordConfirm: {
-            label: 'Repetir contraseña:',
-            placeholder: 'Vuelve a escribir tu contraseña',
-            error: 'La contraseña no coincide',
-            password: true,
-            secureTextEntry: true
+            template: inputTemplate,
+            config: {
+                placeholder: 'Vuelve a escribir tu contraseña',
+                iconType: 'material-community',
+                iconName: 'lock-reset',
+                password: true,
+                secureTextEntry: true
+            }
         },
 
     }

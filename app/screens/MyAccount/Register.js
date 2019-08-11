@@ -18,7 +18,8 @@ export default class Register extends Component {
                 email: '',
                 password: '',
                 passwordConfirm: ''
-            }
+            },
+            formErrorMessage: ''
         }
     }
 
@@ -28,12 +29,18 @@ export default class Register extends Component {
         if (password === passwordConfirm) {
             const validate = this.refs.registerForm.getValue();
             if(validate) {
-                console.log('Formulario correcto')
+                this.setState({
+                    formErrorMessage: ''
+                })
             } else {
-                console.log('Formulario inválido')
+                this.setState({
+                    formErrorMessage: 'Formularío inválido'
+                })
             }
         } else {
-            console.log('Las contraseñas no son iguales')
+            this.setState({
+                formErrorMessage: 'Las contraseñas no son iguales'
+            })
         }
         // console.log(this.state.formData)
     }
@@ -45,7 +52,7 @@ export default class Register extends Component {
     };
 
     render() {
-        const {registerOptions, registerStruct} = this.state;
+        const {registerOptions, registerStruct, formErrorMessage} = this.state;
         return (
             <View style={styles.viewBody}>
                 <Form
@@ -54,7 +61,12 @@ export default class Register extends Component {
                     options={registerOptions}
                     value={this.state.formData}
                     onChange={(formValue) => this.onChangeFormRegister(formValue)} />
-                <Button title="Unirse" onPress={() => this.register()} />
+                <Button
+                    buttonStyle={styles.buttonRegisterContainer}
+                    title="Unirse" 
+                    onPress={() => this.register()} />
+
+                <Text style={styles.formErrorMessage}>{formErrorMessage}</Text>
             </View>
         )
     }
@@ -66,5 +78,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginLeft: 30,
         marginRight: 30
+    },
+    buttonRegisterContainer: {
+        backgroundColor: '#00a680',
+        marginTop: 20,
+        marginLeft: 10,
+        marginRight: 10
+    },
+    formErrorMessage: {
+        color: '#f00',
+        textAlign: 'center',
+        marginTop: 30
     }
 })
