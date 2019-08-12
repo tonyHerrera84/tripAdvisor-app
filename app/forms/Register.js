@@ -22,7 +22,7 @@ export const RegisterOptions = {
                 iconName: 'account-outline'
             }
         },
-        email: {
+        email: {  
             template: inputTemplate,
             config: {
                 placeholder: 'Escríbe tu correo electrónico',
