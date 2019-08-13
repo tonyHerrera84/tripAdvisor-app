@@ -6,6 +6,8 @@ import t from 'tcomb-form-native';
 const Form = t.form.Form;
 import { RegisterOptions, RegisterStruct } from'../../forms/Register';
 
+import * as firebase from 'firebase';
+
 export default class Register extends Component {
     constructor() {
         super();
@@ -31,7 +33,18 @@ export default class Register extends Component {
             if(validate) {
                 this.setState({
                     formErrorMessage: ''
-                })
+                });
+                firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(validate.email, validate.password)
+                    .then(resolve => {
+                        console.log('Registro correcto');
+                        console.log(resolve);
+                    })
+                    .catch(err => {
+                        console.log('Error en el registro');
+                        console.log(err); 
+                    })
             } else {
                 this.setState({
                     formErrorMessage: 'Formularío inválido'
