@@ -8,6 +8,8 @@ import { RegisterOptions, RegisterStruct } from'../../forms/Register';
 
 import * as firebase from 'firebase';
 
+import Toast, {DURATION} from 'react-native-easy-toast';
+
 export default class Register extends Component {
     constructor() {
         super();
@@ -26,6 +28,8 @@ export default class Register extends Component {
     }
 
     register() {
+
+
         const { password, passwordConfirm } = this.state.formData;
 
         if (password === passwordConfirm) {
@@ -40,10 +44,14 @@ export default class Register extends Component {
                     .then(resolve => {
                         console.log('Registro correcto');
                         console.log(resolve);
+                        this.refs.toast.show('Registro correcto.', 200, () => {
+                            this.props.navigation.navigate('MyAccount');
+                        });
                     })
                     .catch(err => {
                         console.log('Error en el registro');
-                        console.log(err); 
+                        console.log(err);
+                        this.refs.toast.show('El email ya está en uso.', 2500);
                     })
             } else {
                 this.setState({
@@ -80,6 +88,15 @@ export default class Register extends Component {
                     onPress={() => this.register()} />
 
                 <Text style={styles.formErrorMessage}>{formErrorMessage}</Text>
+
+                <Toast
+                    ref='toast'
+                    position='bottom'
+                    positionValue={180}
+                    fadeInDuration={750}
+                    fadeOutDuration={1000}
+                    opacity={0.8}
+                    textStyle={{color:'#fff'}} />
             </View>
         )
     }
