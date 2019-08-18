@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text} from 'react-native';
 import { Button } from 'react-native-elements';
 
+import MyAccountGuest from '../../components/MyAccount/MyAccountGuest'
+
 import * as firebase from 'firebase';
 
 export default class MyAccount extends Component {
@@ -46,13 +48,14 @@ export default class MyAccount extends Component {
                 </View>
             )
         } else  {
-            return (
-                <View style={styles.viewBody}>
-                    <Text>MyAccount Scsssreen. </Text>
-                    <Button title="Registro" onPress={() => this.goToScreen('Register')}/>
-                    <Button title="Login" onPress={() => this.goToScreen('Login')}/>
-                </View>
-            )
+            // return (
+            //     <View style={styles.viewBody}>
+            //         <Text>MyAccount Scsssreen. </Text>
+            //         <Button title="Registro" onPress={() => this.goToScreen('Register')}/>
+            //         <Button title="Login" onPress={() => this.goToScreen('Login')}/>
+            //     </View>
+            // )
+            return <MyAccountGuest goToScreen={this.goToScreen} />
         }
     }
 }
