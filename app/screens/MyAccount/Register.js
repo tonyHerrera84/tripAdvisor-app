@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Text} from 'react-native';
-import { Button } from 'react-native-elements';
+import { StyleSheet, View, Text, ActivityIndicator} from 'react-native';
+import { Button, Image } from 'react-native-elements';
 
 import t from 'tcomb-form-native';
 const Form = t.form.Form;
@@ -71,11 +71,20 @@ export default class Register extends Component {
             formData: formValue
         });
     };
+    
+    image = require('../../../assets/img/5-tenedores-letras-icono-logo.png')
 
     render() {
         const {registerOptions, registerStruct, formErrorMessage} = this.state;
         return (
             <View style={styles.viewBody}>
+                <Image
+                    source={this.image}
+                    style={styles.logo}
+                    containerStyle={styles.containerLogo}
+                    PlaceholderContent={<ActivityIndicator />}
+                    resizeMode="contain"
+                />
                 <Form
                     ref="registerForm"
                     type={registerStruct}
@@ -119,5 +128,12 @@ const styles = StyleSheet.create({
         color: '#f00',
         textAlign: 'center',
         marginTop: 30
-    }
+    },
+    containerLogo: {
+        alignItems: 'center'
+    },
+    logo: {
+        width: 200,
+        height: 200
+    },
 })
