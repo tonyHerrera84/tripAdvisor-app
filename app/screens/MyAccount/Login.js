@@ -91,6 +91,13 @@ export default class Login extends Component {
                         buttonStyle={styles.buttonLoginContainer} 
                         title="Login"
                         onPress={() => this.login()}/>
+                    <Text style={styles.textRegister}>
+                        ¿Aún no tienes una cuenta?  
+                        <Text
+                            style={styles.btnRegister}
+                            onPress={() => this.props.navigation.navigate('Register')}>
+                              Registráte</Text>
+                    </Text>
                 </View>
 
                 <Text style={styles.loginErrorMessage}>{loginErrorMessage}</Text>
@@ -134,6 +141,19 @@ const styles = StyleSheet.create({
     loginErrorMessage: {
         color: '#f00',
         textAlign: 'center',
-        marginTop: 20
+        marginTop: 20,
+        marginBottom: 20
+    },
+    textRegister: {
+        marginTop: 15,
+        marginLeft: 10,
+        marginRight: 10
+    },
+    btnRegister: {
+        color: '#00a680',
+        fontWeight: 'bold',
+        paddingRight: 20,
+        paddingStart: 20,
+        paddingLeft: 20
     }
 })
